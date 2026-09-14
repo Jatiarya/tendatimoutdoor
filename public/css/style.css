@@ -1,0 +1,1614 @@
+/* =============================================
+   TendaTim Outdoor — Admin Dashboard CSS
+   Primary: #53cbf3
+   ============================================= */
+
+@import url("https://fonts.googleapis.com/css2?family=Carter+One&family=Poppins:wght@300;400;500;600;700&display=swap");
+
+/* ── Reset & Base ── */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+:root {
+  --primary: #53cbf3;
+  --primary-dark: #2bb8e8;
+  --primary-soft: rgba(83, 203, 243, 0.12);
+  --primary-glow: rgba(83, 203, 243, 0.25);
+  --bg: #f0f2f5;
+  --white: #ffffff;
+  --gray-50: #f9fafb;
+  --gray-100: #f3f4f6;
+  --gray-200: #e5e7eb;
+  --gray-400: #9ca3af;
+  --gray-500: #6b7280;
+  --gray-700: #374151;
+  --gray-900: #111827;
+  --danger: #ef4444;
+  --success: #22c55e;
+  --warning: #f59e0b;
+  --radius-sm: 10px;
+  --radius-md: 18px;
+  --radius-lg: 28px;
+  --shadow-sm: 0 2px 8px rgba(0, 0, 0, 0.06);
+  --shadow-md: 0 4px 20px rgba(0, 0, 0, 0.08);
+  --shadow-lg: 0 8px 40px rgba(0, 0, 0, 0.1);
+  --nav-h: 80px;
+  --sidebar-w: 260px;
+  --transition: 0.22s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+body {
+  font-family: "Poppins", sans-serif;
+  background: var(--bg);
+  color: var(--gray-900);
+  min-height: 100vh;
+  overflow-x: hidden;
+}
+
+/* =============================================
+   LAYOUT SHELL
+   ============================================= */
+.page-wrapper {
+  display: grid;
+  grid-template-rows: var(--nav-h) 1fr;
+  min-height: 100vh;
+}
+
+.body-wrapper {
+  position: relative;
+  display: grid;
+  grid-template-columns: var(--sidebar-w) 1fr;
+  gap: 20px;
+  padding: 0 20px 20px;
+  margin-top: calc(var(--nav-h) + 24px);
+}
+
+/* =============================================
+   NAVBAR
+   ============================================= */
+.top-navbar {
+  position: fixed;
+  top: 12px;
+  left: 12px;
+  right: 12px;
+  height: var(--nav-h);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0 28px;
+  z-index: 100;
+  overflow: hidden;
+  gap: 12px;
+}
+
+.navbar-left {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  min-width: 0;
+  flex: 1 1 auto;
+  overflow: hidden;
+}
+
+/* Mobile hamburger toggle — hidden on desktop, shown under 768px */
+.navbar-toggle {
+  display: none;
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-100);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.25rem;
+  color: var(--gray-700);
+  cursor: pointer;
+  flex-shrink: 0;
+  transition: var(--transition);
+  position: relative;
+  z-index: 2;
+}
+.navbar-toggle:hover {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.navbar-logo {
+  font-family: "Carter One", system-ui;
+  font-size: 1.6rem;
+  color: var(--primary);
+  letter-spacing: 0.02em;
+  text-decoration: none;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  min-width: 0;
+}
+.navbar-logo-icon {
+  width: 50px;
+  height: 50px;
+  background: var(--primary);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-size: 1rem;
+  padding: 5px;
+  overflow: hidden;
+  flex-shrink: 0;
+}
+.navbar-logo-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: 50%;
+  display: block;
+}
+.navbar-logo-text {
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+.navbar-logo-sub {
+  opacity: 0.65;
+}
+
+.navbar-right {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+  flex-shrink: 0;
+}
+
+.navbar-notif {
+  width: 42px;
+  height: 42px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  color: var(--gray-500);
+  cursor: pointer;
+  position: relative;
+  transition: var(--transition);
+}
+.navbar-notif:hover {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+.navbar-notif-dot {
+  position: absolute;
+  top: 8px;
+  right: 9px;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: var(--danger);
+  border: 1.5px solid var(--white);
+}
+
+.navbar-profile {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 6px 14px 6px 6px;
+  background: var(--gray-100);
+  border-radius: 999px;
+  cursor: pointer;
+  transition: var(--transition);
+  border: none;
+}
+.navbar-profile:hover {
+  background: var(--primary-soft);
+}
+
+.navbar-avatar {
+  width: 40px;
+  height: 40px;
+  border-radius: 50%;
+  background: linear-gradient(135deg, var(--primary), var(--primary-dark));
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: 700;
+  font-size: 0.85rem;
+  color: white;
+  flex-shrink: 0;
+}
+.navbar-profile-name {
+  font-size: 0.82rem;
+  font-weight: 600;
+  color: var(--gray-900);
+  line-height: 1.2;
+}
+.navbar-profile-role {
+  font-size: 0.7rem;
+  color: var(--gray-400);
+  line-height: 1.2;
+}
+.navbar-arrow {
+  font-size: 1rem;
+  color: var(--gray-400);
+}
+
+/* =============================================
+   SIDEBAR
+   ============================================= */
+
+/* ── Dropdown Sidebar ── */
+.sidebar-dropdown {
+  overflow: hidden;
+  max-height: 0;
+  transition:
+    max-height 0.32s cubic-bezier(0.4, 0, 0.2, 1),
+    opacity 0.25s ease;
+  opacity: 0;
+}
+
+.sidebar-dropdown.open {
+  max-height: 200px;
+  opacity: 1;
+}
+
+.sidebar-dropdown-item {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 9px 16px 9px 46px;
+  border-radius: 10px;
+  margin: 2px 0;
+  color: var(--gray-400);
+  font-size: 0.83rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: all 0.2s;
+  position: relative;
+}
+
+.sidebar-dropdown-item::before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--gray-300, #d1d5db);
+  transition: background 0.2s;
+}
+
+.sidebar-dropdown-item:hover {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.sidebar-dropdown-item:hover::before {
+  background: var(--primary);
+}
+
+.sidebar-dropdown-item.active {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+  font-weight: 600;
+}
+
+.sidebar-dropdown-item.active::before {
+  background: var(--primary);
+  box-shadow: 0 0 0 3px rgba(83, 203, 243, 0.2);
+}
+
+/* Chevron rotate */
+.sidebar-chevron {
+  margin-left: auto;
+  font-size: 1rem;
+  color: var(--gray-400);
+  transition: transform 0.28s cubic-bezier(0.4, 0, 0.2, 1);
+  flex-shrink: 0;
+}
+
+.sidebar-chevron.open {
+  transform: rotate(180deg);
+  color: var(--primary);
+}
+
+/* Parent aktif saat dropdown terbuka */
+.sidebar-link.has-dropdown.parent-active {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+
+.sidebar-link.has-dropdown.parent-active .sidebar-link-icon {
+  color: var(--primary-dark);
+}
+
+/* Garis kiri vertikal dropdown */
+.dropdown-wrap {
+  position: relative;
+  padding-left: 0;
+}
+
+.dropdown-wrap::before {
+  content: "";
+  position: absolute;
+  left: 26px;
+  top: 0;
+  bottom: 6px;
+  width: 1.5px;
+  background: linear-gradient(to bottom, var(--primary-soft), transparent);
+  border-radius: 2px;
+  opacity: 0;
+  transition: opacity 0.25s;
+}
+
+.dropdown-wrap.open::before {
+  opacity: 1;
+}
+
+.sidebar {
+  position: fixed;
+  top: calc(var(--nav-h) + 24px);
+  left: 20px;
+  width: var(--sidebar-w);
+  height: calc(100vh - var(--nav-h) - 44px);
+  background: var(--white);
+  border-radius: var(--radius-lg);
+  box-shadow: var(--shadow-md);
+  padding: 24px 16px;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  overflow-y: auto;
+  scrollbar-width: none;
+  transition: transform 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+}
+.sidebar::-webkit-scrollbar {
+  display: none;
+}
+
+/* Tombol tutup sidebar — hanya relevan & terlihat di mobile */
+.sidebar-close-btn {
+  display: none;
+  align-self: flex-end;
+  width: 36px;
+  height: 36px;
+  border-radius: 50%;
+  border: none;
+  background: var(--gray-100);
+  color: var(--gray-500);
+  align-items: center;
+  justify-content: center;
+  font-size: 1.1rem;
+  cursor: pointer;
+  margin-bottom: 8px;
+  flex-shrink: 0;
+}
+.sidebar-close-btn:hover {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+
+/* Overlay backdrop untuk drawer sidebar di mobile */
+.sidebar-overlay {
+  display: none;
+  position: fixed;
+  inset: 0;
+  background: rgba(17, 24, 39, 0.5);
+  backdrop-filter: blur(2px);
+  z-index: 250;
+  opacity: 0;
+  transition: opacity 0.25s ease;
+}
+.sidebar-overlay.show {
+  display: block;
+  opacity: 1;
+}
+
+body.no-scroll {
+  overflow: hidden;
+}
+
+.sidebar-section-label {
+  font-size: 0.7rem;
+  font-weight: 600;
+  color: var(--gray-400);
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  padding: 0 10px;
+  margin-bottom: 10px;
+}
+
+.sidebar-nav {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.sidebar-nav li {
+  background: var(--primary);
+  padding: 10px;
+  border-radius: var(--radius-sm);
+  list-style: none;
+  text-align: center;
+}
+.sidebar-nav li a {
+  color: white;
+  text-decoration: none;
+  font-weight: 400;
+  display: block;
+}
+.sidebar-nav li a:hover {
+  color: var(--primary-dark);
+  text-decoration: none;
+  font-weight: 400;
+  display: block;
+}
+.sidebar-link {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  color: var(--gray-500);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  border: none;
+  background: none;
+  width: 100%;
+  cursor: pointer;
+  position: relative;
+}
+/*  */
+
+/*  */
+.sidebar-link:hover {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+.sidebar-link.active {
+  background: var(--primary);
+  color: white;
+  box-shadow: 0 6px 20px var(--primary-glow);
+}
+.sidebar-link.active .sidebar-link-icon {
+  color: white;
+}
+.sidebar-link-icon {
+  width: 22px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.15rem;
+  flex-shrink: 0;
+}
+.sidebar-link-badge {
+  margin-left: auto;
+  background: var(--danger);
+  color: white;
+  font-size: 0.65rem;
+  font-weight: 700;
+  padding: 2px 7px;
+  border-radius: 20px;
+  min-width: 20px;
+  text-align: center;
+}
+.sidebar-link.active .sidebar-link-badge {
+  background: rgba(255, 255, 255, 0.3);
+  color: white;
+}
+
+.sidebar-logout {
+  display: flex;
+  align-items: center;
+  gap: 13px;
+  padding: 13px 16px;
+  border-radius: var(--radius-md);
+  color: var(--danger);
+  font-size: 0.9rem;
+  font-weight: 500;
+  text-decoration: none;
+  transition: var(--transition);
+  background: none;
+  border: none;
+  width: 100%;
+  cursor: pointer;
+}
+.sidebar-logout:hover {
+  background: rgba(239, 68, 68, 0.08);
+}
+
+/* =============================================
+   MAIN CONTENT
+   ============================================= */
+.main-content {
+  position: absolute;
+  top: 0;
+  right: 0;
+  left: calc(var(--sidebar-w) + 20px);
+  margin-left: 0;
+  padding: 20px 0 80px 0;
+  min-height: calc(100vh - var(--nav-h));
+  display: flex;
+  flex-direction: column;
+  width: auto;
+  max-width: 100%;
+}
+
+/* =============================================
+   CARDS
+   ============================================= */
+.stat-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(200px, 1fr));
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 0 10px;
+}
+
+.stat-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  flex-direction: column;
+  gap: 8px;
+  transition: var(--transition);
+}
+.stat-card:hover {
+  transform: translateY(-3px);
+  box-shadow: var(--shadow-md);
+}
+
+.stat-card-top {
+  display: flex;
+  align-items: flex-start;
+  justify-content: space-between;
+}
+
+.stat-label {
+  font-size: 0.85rem;
+  font-weight: 500;
+  color: var(--gray-500);
+}
+.stat-value {
+  font-size: 2.2rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.1;
+  margin: 6px 0 4px;
+}
+.stat-value.revenue {
+  font-size: 1.5rem;
+}
+.stat-desc {
+  font-size: 0.76rem;
+  color: var(--gray-400);
+}
+.stat-desc .up {
+  color: var(--success);
+  font-weight: 600;
+}
+.stat-desc .down {
+  color: var(--danger);
+  font-weight: 600;
+}
+
+.stat-icon {
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  background: var(--gray-100);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 1.3rem;
+  flex-shrink: 0;
+  color: var(--gray-500);
+}
+
+/* =============================================
+   CHART CARDS
+   ============================================= */
+.charts-row {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+  margin-bottom: 22px;
+  padding: 0 10px;
+}
+
+.chart-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  padding: 22px 20px;
+  box-shadow: var(--shadow-sm);
+}
+.chart-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 18px;
+}
+.chart-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+.chart-filter {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  border: 1px solid var(--gray-200);
+  padding: 6px 14px;
+  border-radius: 999px;
+  font-size: 0.78rem;
+  color: var(--gray-500);
+  cursor: pointer;
+  background: none;
+  transition: var(--transition);
+}
+.chart-filter:hover {
+  border-color: var(--primary);
+  color: var(--primary);
+}
+.chart-canvas-wrap {
+  position: relative;
+  height: 220px;
+}
+
+/* Widget "Pesanan Menunggu Konfirmasi" di body dashboard.
+   Gutter kiri-kanan 10px SENGAJA disamakan dengan .stat-grid/.charts-row
+   (pakai margin karena ini bukan grid container, cuma 1 card berdiri sendiri)
+   supaya tetap sejajar dengan card lain di semua ukuran layar. */
+.dashboard-notif-card {
+  margin: 0 10px 22px;
+}
+
+/* =============================================
+   TABLE CARD
+   ============================================= */
+.table-card {
+  background: var(--white);
+  border-radius: var(--radius-md);
+  box-shadow: var(--shadow-sm);
+  overflow: hidden;
+  flex: 1;
+}
+.table-card-header {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px 16px;
+  padding: 20px 24px;
+  border-bottom: 1px solid var(--gray-100);
+}
+.table-card-header > div {
+  flex-wrap: wrap;
+}
+.table-card-title {
+  font-size: 0.95rem;
+  font-weight: 600;
+  color: var(--gray-900);
+}
+.search-pill {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  border: 1px solid var(--gray-200);
+  border-radius: 999px;
+  padding: 8px 16px;
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  transition: var(--transition);
+  min-width: 0;
+}
+.search-pill:focus-within {
+  border-color: var(--primary);
+}
+.search-pill i {
+  font-size: 1rem;
+  flex-shrink: 0;
+}
+.search-pill input {
+  border: none;
+  outline: none;
+  background: transparent;
+  font-size: 0.82rem;
+  font-family: "Poppins", sans-serif;
+  color: var(--gray-700);
+  width: 180px;
+  max-width: 100%;
+  min-width: 0;
+}
+
+/* Navbar search: hidden by default, only shown from tablet width up.
+   Deliberately its own rule (not relying on Tailwind's hidden/md:flex)
+   so it can't be fought over by conflicting stylesheets. */
+.navbar-search {
+  display: none;
+  width: 220px;
+  flex-shrink: 0;
+}
+@media (min-width: 769px) {
+  .navbar-search {
+    display: flex;
+  }
+}
+
+.data-table {
+  width: 100%;
+  border-collapse: collapse;
+}
+.data-table thead tr {
+  background: var(--gray-50);
+}
+.data-table thead th {
+  padding: 14px 20px;
+  text-align: left;
+  font-size: 0.72rem;
+  font-weight: 600;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  color: var(--gray-500);
+  white-space: nowrap;
+}
+.data-table tbody tr {
+  border-top: 1px solid var(--gray-100);
+  transition: var(--transition);
+}
+.data-table tbody tr:hover {
+  background: var(--gray-50);
+}
+.data-table tbody td {
+  padding: 16px 20px;
+  font-size: 0.85rem;
+  color: var(--gray-700);
+  vertical-align: middle;
+}
+.data-table td strong {
+  color: var(--gray-900);
+  font-weight: 600;
+}
+
+/* =============================================
+   BADGES
+   ============================================= */
+.badge {
+  display: inline-flex;
+  align-items: center;
+  gap: 5px;
+  padding: 5px 12px;
+  border-radius: 999px;
+  font-size: 0.75rem;
+  font-weight: 500;
+}
+.badge::before {
+  content: "";
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: currentColor;
+  flex-shrink: 0;
+}
+.badge-active {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.badge-pending {
+  background: #fef9c3;
+  color: #b45309;
+}
+.badge-inactive {
+  background: #fee2e2;
+  color: #dc2626;
+}
+.badge-done {
+  background: #dbeafe;
+  color: #2563eb;
+}
+/* Dipakai di diskon, kategori, pengguna, laporan, pembayaran, penyewaan */
+.badge-success {
+  background: #dcfce7;
+  color: #16a34a;
+}
+.badge-secondary {
+  background: var(--gray-100);
+  color: var(--gray-500);
+}
+.badge-warning {
+  background: #fef9c3;
+  color: #b45309;
+}
+.badge-danger {
+  background: #fee2e2;
+  color: #dc2626;
+}
+
+/* =============================================
+   ACTION BUTTONS
+   ============================================= */
+.action-btns {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.act-btn {
+  width: 32px;
+  height: 32px;
+  border-radius: 8px;
+  border: none;
+  cursor: pointer;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 0.9rem;
+  transition: var(--transition);
+}
+.act-btn-view {
+  background: var(--primary-soft);
+  color: var(--primary-dark);
+}
+.act-btn-edit {
+  background: rgba(245, 158, 11, 0.12);
+  color: #d97706;
+}
+.act-btn-del {
+  background: rgba(239, 68, 68, 0.1);
+  color: var(--danger);
+}
+.act-btn-view:hover {
+  background: var(--primary);
+  color: white;
+}
+.act-btn-edit:hover {
+  background: #f59e0b;
+  color: white;
+}
+.act-btn-del:hover {
+  background: var(--danger);
+  color: white;
+}
+.act-btn-disabled {
+  background: var(--gray-100);
+  color: var(--gray-400);
+  cursor: not-allowed;
+}
+
+/* =============================================
+   PAGE HEADER
+   ============================================= */
+.page-header {
+  margin-bottom: 24px;
+  display: flex;
+  align-items: flex-end;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  padding: 10px;
+}
+.page-header-title {
+  font-size: 1.6rem;
+  font-weight: 700;
+  color: var(--gray-900);
+  line-height: 1.2;
+}
+.page-header-sub {
+  font-size: 0.82rem;
+  color: var(--gray-400);
+  margin-top: 3px;
+}
+.page-header-date {
+  font-size: 0.8rem;
+  color: var(--gray-400);
+  background: var(--white);
+  padding: 8px 16px;
+  border-radius: 999px;
+  box-shadow: var(--shadow-sm);
+  display: flex;
+  align-items: center;
+  gap: 6px;
+}
+.table-container {
+  padding: 0 10px;
+}
+
+/* Form */
+/* ==========================
+   FORM
+========================== */
+
+.form-card {
+  background: #fff;
+  border-radius: 18px;
+  padding: 30px;
+  box-shadow: 0 4px 20px rgba(0, 0, 0, 0.06);
+}
+
+.form-grid {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  gap: 20px;
+}
+
+.form-group {
+  display: flex;
+  flex-direction: column;
+}
+
+.form-group.full {
+  grid-column: 1 / -1;
+}
+
+.form-group label {
+  margin-bottom: 8px;
+  font-size: 0.9rem;
+  font-weight: 600;
+  color: #374151;
+}
+
+.form-control {
+  width: 100%;
+  padding: 12px 15px;
+  border: 1px solid #d1d5db;
+  border-radius: 10px;
+  outline: none;
+  font-family: "Poppins", sans-serif;
+  transition: 0.2s;
+  background: #fff;
+}
+
+.form-control:focus {
+  border-color: #53cbf3;
+  box-shadow: 0 0 0 4px rgba(83, 203, 243, 0.15);
+}
+
+textarea.form-control {
+  resize: vertical;
+}
+
+.form-action {
+  display: flex;
+  justify-content: flex-end;
+  gap: 12px;
+  margin-top: 30px;
+}
+
+.btn-secondary {
+  background: #e5e7eb;
+  color: #374151;
+  padding: 10px 20px;
+  border-radius: 10px;
+  text-decoration: none;
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  transition: 0.2s;
+}
+
+.btn-secondary:hover {
+  background: #d1d5db;
+}
+
+/* ── Alert banner (dipakai untuk menampilkan errors di halaman tambah/ubah) ── */
+.php-alert {
+  padding: 14px 18px;
+  border-radius: var(--radius-sm);
+  font-size: 0.85rem;
+  line-height: 1.5;
+}
+.php-alert.error {
+  background: #fef2f2;
+  border: 1px solid #fecaca;
+  color: #b91c1c;
+}
+.php-alert.error a {
+  color: inherit;
+  font-weight: 600;
+}
+
+/* ── Info note (dipakai di halaman ubah status penyewaan) ── */
+.ktp-note {
+  display: flex;
+  align-items: flex-start;
+  gap: 10px;
+  background: var(--primary-soft);
+  border: 1px solid rgba(83, 203, 243, 0.35);
+  border-radius: var(--radius-sm);
+  padding: 12px 16px;
+  font-size: 0.82rem;
+  line-height: 1.5;
+  color: var(--gray-700);
+}
+.ktp-note i,
+.ktp-note span:first-child {
+  flex-shrink: 0;
+  color: var(--primary-dark);
+}
+
+@media (max-width: 768px) {
+  .form-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .form-action {
+    flex-direction: column;
+  }
+
+  .btn-primary,
+  .btn-secondary {
+    width: 100%;
+    justify-content: center;
+  }
+
+  .php-alert,
+  .ktp-note {
+    font-size: 0.8rem;
+    padding: 12px 14px;
+  }
+}
+/*  */
+
+/* =============================================
+   FOOTER
+   ============================================= */
+.admin-footer {
+  position: fixed;
+  bottom: 0;
+  left: 0;
+  right: 0;
+  color: var(--gray-400);
+  margin-top: 20px;
+  margin-left: calc(var(--sidebar-w) + 30px);
+  padding: 14px 20px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 8px;
+  border-top: 1px solid #e5e7eb;
+  background: var(--bg);
+}
+.admin-footer-copy {
+  font-size: 0.75rem;
+  color: var(--gray-400);
+}
+.admin-footer-links {
+  display: flex;
+  align-items: center;
+  gap: 14px;
+}
+
+/* =============================================
+   DATATABLE OVERRIDES (primary = #53cbf3)
+   ============================================= */
+.dt-search input {
+  width: 240px;
+  height: 42px;
+  border-radius: 999px !important;
+  border: 1px solid var(--gray-200) !important;
+  padding: 0 18px !important;
+  outline: none !important;
+  background: var(--gray-50) !important;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.83rem;
+  transition: var(--transition);
+}
+.dt-search input:focus {
+  border-color: var(--primary) !important;
+  box-shadow: 0 0 0 3px var(--primary-glow) !important;
+  background: white !important;
+}
+.dt-length select {
+  height: 40px;
+  border-radius: var(--radius-sm) !important;
+  border: 1px solid var(--gray-200) !important;
+  padding: 0 12px !important;
+  outline: none;
+  background: var(--white);
+  font-family: "Poppins", sans-serif;
+  cursor: pointer;
+}
+table.dataTable {
+  border-collapse: separate !important;
+  border-spacing: 0 8px !important;
+}
+table.dataTable thead th {
+  background: var(--gray-50) !important;
+  color: var(--gray-500) !important;
+  font-weight: 600 !important;
+  font-size: 0.72rem;
+  text-transform: uppercase;
+  letter-spacing: 0.09em;
+  padding: 14px 20px !important;
+  border: none !important;
+}
+table.dataTable tbody tr {
+  background: var(--white);
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.04);
+  transition: var(--transition);
+}
+table.dataTable tbody tr:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 6px 18px rgba(0, 0, 0, 0.07);
+}
+table.dataTable tbody td {
+  padding: 16px 20px !important;
+  border: none !important;
+  vertical-align: middle;
+}
+table.dataTable tbody tr td:first-child {
+  border-radius: var(--radius-sm) 0 0 var(--radius-sm);
+}
+table.dataTable tbody tr td:last-child {
+  border-radius: 0 var(--radius-sm) var(--radius-sm) 0;
+}
+
+.dt-paging-button {
+  width: 38px !important;
+  height: 38px !important;
+  border-radius: var(--radius-sm) !important;
+  border: none !important;
+  background: var(--gray-100) !important;
+  margin: 0 3px;
+  font-weight: 500;
+  transition: var(--transition);
+}
+.dt-paging-button:hover {
+  background: var(--primary-soft) !important;
+  color: var(--primary-dark) !important;
+}
+.dt-paging-button.current {
+  background: var(--primary) !important;
+  color: white !important;
+  font-weight: 700;
+}
+.dt-info {
+  margin-top: 14px;
+  color: var(--gray-400);
+  font-size: 0.8rem;
+}
+.dt-layout-row:first-child {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 14px;
+}
+
+/* =============================================
+   RESPONSIVE
+   ============================================= */
+
+/* ── Tablet / small laptop ── */
+@media (max-width: 1024px) {
+  .charts-row {
+    grid-template-columns: 1fr;
+  }
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+  }
+  .sidebar {
+    left: 12px;
+  }
+  .body-wrapper {
+    padding: 0 12px 12px;
+  }
+}
+
+/* ── Mobile (phones & small tablets) ── */
+@media (max-width: 768px) {
+  :root {
+    --sidebar-w: 220px;
+    --nav-h: 64px;
+  }
+
+  .top-navbar {
+    left: 8px;
+    right: 8px;
+    padding: 0 14px;
+  }
+  .navbar-toggle {
+    display: flex;
+  }
+  .navbar-logo {
+    font-size: 1.25rem;
+    gap: 8px;
+  }
+  .navbar-logo-icon {
+    width: 40px;
+    height: 40px;
+  }
+  .navbar-right {
+    gap: 8px;
+  }
+
+  .body-wrapper {
+    grid-template-columns: 1fr;
+    margin-top: calc(var(--nav-h) + 16px);
+    padding: 0 12px 12px;
+  }
+
+  /* Sidebar becomes an off-canvas drawer that slides in from the left */
+  .sidebar {
+    top: 0;
+    left: 0;
+    width: min(82vw, 300px);
+    height: 100vh;
+    max-height: 100vh;
+    border-radius: 0 var(--radius-lg) var(--radius-lg) 0;
+    padding: 20px 16px calc(20px + env(safe-area-inset-bottom));
+    transform: translateX(-100%);
+    z-index: 300;
+    box-shadow: var(--shadow-lg);
+  }
+  .sidebar.open {
+    transform: translateX(0);
+  }
+  .sidebar-close-btn {
+    display: flex;
+  }
+
+  .main-content {
+    position: static;
+    left: auto;
+    right: auto;
+    margin-left: 0;
+    padding: 12px 0 80px 0;
+    min-height: auto;
+  }
+
+  .stat-grid {
+    grid-template-columns: repeat(2, 1fr);
+    gap: 12px;
+  }
+  .stat-card {
+    padding: 16px 14px;
+  }
+  .stat-value {
+    font-size: clamp(1.3rem, 5vw, 1.8rem);
+  }
+  .stat-value.revenue {
+    font-size: clamp(1.05rem, 4.2vw, 1.3rem);
+  }
+
+  .chart-card {
+    padding: 16px 14px;
+  }
+  .chart-canvas-wrap {
+    height: 190px;
+  }
+  .chart-filter {
+    padding: 5px 10px;
+    font-size: 0.72rem;
+  }
+
+  /* Widget notifikasi pesanan: ikon lebih kecil, tombol "Lihat" turun
+     ke baris baru supaya judul/pesan tidak kepepet di layar sempit. */
+  .dashboard-notif-card {
+    margin: 0 6px 18px;
+  }
+  .dashboard-notif-item {
+    flex-wrap: wrap;
+    padding: 12px 14px;
+    gap: 8px;
+  }
+  .dashboard-notif-icon {
+    width: 34px;
+    height: 34px;
+    font-size: 1rem;
+  }
+  .dashboard-notif-title {
+    font-size: 0.84rem;
+  }
+  .dashboard-notif-desc {
+    font-size: 0.76rem;
+  }
+  .dashboard-notif-link {
+    width: 100%;
+    justify-content: flex-end;
+    margin-top: 2px;
+  }
+
+  .page-header {
+    padding: 4px;
+    align-items: flex-start;
+  }
+  .page-header-title {
+    font-size: 1.3rem;
+  }
+  .page-header-date {
+    font-size: 0.74rem;
+    padding: 7px 12px;
+  }
+
+  /* Header tabel (judul + search + tombol Tambah) di semua halaman list */
+  .table-card-header {
+    padding: 16px;
+  }
+  .table-card-header > div {
+    width: 100%;
+  }
+  .search-pill {
+    flex: 1 1 160px;
+  }
+  .search-pill input {
+    width: 100%;
+  }
+  .table-card-header .btn-primary {
+    flex-shrink: 0;
+  }
+
+  .action-btns {
+    flex-wrap: wrap;
+  }
+
+  .form-card {
+    padding: 20px;
+  }
+
+  .admin-footer {
+    position: static;
+    margin-left: 0;
+    margin-top: 24px;
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 10px;
+    padding: 16px;
+  }
+  .admin-footer-links {
+    flex-wrap: wrap;
+    row-gap: 6px;
+  }
+
+  .table-card {
+    overflow-x: auto;
+  }
+}
+
+/* ── Small phones ── */
+@media (max-width: 480px) {
+  .navbar-logo-sub {
+    display: none;
+  }
+  .navbar-profile-name,
+  .navbar-profile-role {
+    display: none;
+  }
+  .navbar-profile {
+    padding: 6px;
+    gap: 6px;
+  }
+  .navbar-arrow {
+    display: none;
+  }
+
+  .stat-grid {
+    grid-template-columns: 1fr;
+  }
+
+  /* Header card "Pesanan Menunggu Konfirmasi": judul + tombol "Tandai
+     semua dibaca" turun ke baris terpisah di HP kecil biar tidak dempet. */
+  .dashboard-notif-card .chart-card-header {
+    flex-direction: column;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .page-header {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  .form-card {
+    padding: 18px;
+  }
+
+  .table-card-header .btn-primary {
+    width: 100%;
+    justify-content: center;
+  }
+  .search-pill {
+    flex-basis: 100%;
+  }
+
+  /* Grid stat-card auto-fit inline (laporan, pembayaran, penyewaan) */
+  .table-container [style*="grid-template-columns: repeat(auto-fit"] {
+    grid-template-columns: 1fr !important;
+  }
+}
+
+/* =============================================
+   MISC UTILITIES
+   ============================================= */
+.text-primary {
+  color: var(--primary);
+}
+.bg-primary {
+  background: var(--primary);
+}
+.btn-primary {
+  background: var(--primary);
+  color: white;
+  border: none;
+  border-radius: var(--radius-sm);
+  padding: 10px 20px;
+  font-family: "Poppins", sans-serif;
+  font-size: 0.85rem;
+  font-weight: 500;
+  cursor: pointer;
+  transition: var(--transition);
+  display: inline-flex;
+  align-items: center;
+  gap: 7px;
+  text-decoration: none;
+}
+.btn-primary:hover {
+  background: var(--primary-dark);
+  box-shadow: 0 4px 16px var(--primary-glow);
+  transform: translateY(-1px);
+}
+
+/* Animate in */
+@keyframes fadeUp {
+  from {
+    opacity: 0;
+    transform: translateY(16px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+.animate-up {
+  animation: fadeUp 0.4s ease forwards;
+}
+.delay-1 {
+  animation-delay: 0.05s;
+  opacity: 0;
+}
+.delay-2 {
+  animation-delay: 0.1s;
+  opacity: 0;
+}
+.delay-3 {
+  animation-delay: 0.15s;
+  opacity: 0;
+}
+.delay-4 {
+  animation-delay: 0.2s;
+  opacity: 0;
+}
+
+/* ── PERIODE FILTER BAR (1 baris, ringkas — dipakai di laporan/pembayaran/penyewaan) ── */
+.periode-bar {
+  background: #fff;
+  border-radius: 12px;
+  padding: 10px 14px;
+  box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+.periode-bar-label {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  font-weight: 600;
+  font-size: 0.8rem;
+  color: #4a5568;
+  white-space: nowrap;
+}
+.periode-bar-label i {
+  font-size: 1rem;
+  color: #53cbf3;
+}
+.periode-bar-pills {
+  display: flex;
+  gap: 5px;
+  flex-wrap: wrap;
+}
+.periode-pill {
+  padding: 5px 11px;
+  border-radius: 7px;
+  font-size: 0.75rem;
+  font-weight: 500;
+  color: #667085;
+  background: #f4f6f8;
+  border: none;
+  cursor: pointer;
+  white-space: nowrap;
+  font-family: inherit;
+  transition: all 0.2s ease;
+}
+.periode-pill:hover {
+  color: #1a2e1a;
+  background: rgba(83, 203, 243, 0.15);
+}
+.periode-pill.active {
+  background: linear-gradient(135deg, #53cbf3, #3badd9);
+  color: #fff;
+}
+.periode-bar-dates {
+  display: flex;
+  align-items: center;
+  gap: 6px;
+  margin-left: auto;
+}
+.periode-bar-dates input[type="date"] {
+  padding: 5px 9px;
+  border-radius: 7px;
+  border: 1.5px solid #e5e7eb;
+  font-size: 0.75rem;
+  font-family: inherit;
+  color: #1a2e1a;
+  background: #fafafa;
+  transition:
+    border-color 0.2s,
+    background 0.2s;
+}
+.periode-bar-dates input[type="date"]:focus {
+  outline: none;
+  border-color: #53cbf3;
+  background: #fff;
+}
+.periode-bar-sep {
+  color: #b0b0b0;
+  font-size: 0.8rem;
+}
+.periode-bar-apply {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  width: 28px;
+  height: 28px;
+  border-radius: 7px;
+  background: linear-gradient(135deg, #53cbf3, #3badd9);
+  color: #fff;
+  border: none;
+  cursor: pointer;
+  flex-shrink: 0;
+  font-size: 0.9rem;
+  transition:
+    transform 0.2s,
+    box-shadow 0.2s;
+}
+.periode-bar-apply:hover {
+  transform: translateY(-1px);
+  box-shadow: 0 4px 12px rgba(83, 203, 243, 0.4);
+}
+
+@media (max-width: 640px) {
+  .periode-bar {
+    flex-direction: column;
+    align-items: stretch;
+  }
+  .periode-bar-pills {
+    justify-content: space-between;
+  }
+  .periode-pill {
+    flex: 1;
+    text-align: center;
+  }
+  .periode-bar-dates {
+    margin-left: 0;
+    justify-content: space-between;
+  }
+  .periode-bar-dates input[type="date"] {
+    flex: 1;
+    min-width: 0;
+  }
+}
